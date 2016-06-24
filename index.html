@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Content creation UX wonderland with Entity browser</title>
+    <meta name="description" content="Presentation about Entity browser module for Drupal 8.">
+    <meta name="author" content="Janez Urevc">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+	<section id="front">
+	  <img src="img/drupalddmilan.png" style="border: none; max-height: 300px; background: none;" />
+	  <h2>Content creation UX wonderland with Entity browser</h2>
+	  <p>
+	    <a href="https://www.drupal.org/u/slashrsm">Janez Urevc</a> / <a href="http://twitter.com/slashrsm">@slashrsm</a> / <a href="http://janezurevc.name">http://janezurevc.name</a>
+	  </p>
+	  <p>
+	    <a href="http://slashrsm.github.io/entity-browser-session">slashrsm.github.io/entity-browser-session</a>
+	  </p>
+	</section>
+
+	<section>
+	  <section id="about">
+	    <h2>Janez Urevc (<a href="https://drupal.org/u/slashrsm">@slashrsm</a>)</h2>
+	    <ul>
+	      <li>senior engineer and team lead at MD Systems</li>
+	      <li class="fragment">Active member of Drupal community since 2009</li>
+	      <li class="fragment">Lead of the D8 media initiative</li>
+	      <li class="fragment">ex Examiner.com</li>
+	    </ul>
+	  </section>
+
+	  <section>
+	    <h2>Biggest company contributor</h2>
+	    <img src="img/credits.png" class="stretch" />
+	    <p>Source: <a href="https://drupal.org/drupal-services">drupal.org/drupal-services</a></p>
+      <p><a href="http://www.md-systems.ch">http://www.md-systems.ch/en</a></p>
+	    <aside class="notes">
+        <ul>
+          <li>top 5 D8 ind. contrib.</li>
+          <li>D8 expert</li>
+          <li>D8 media expert (NP8)</li>
+        </ul>
+      </aside>
+	  </section>
+
+	  <section>
+	    <img src="img/remote.jpg" class="stretch" />
+	    <p><a href="https://37signals.com/remote/">Remote: Office not required</a></p>
+	  </section>
+
+	  <section>
+	    <img src="img/sunset.jpg" class="stretch" />
+	  </section>
+
+	  <section>
+	    <img src="img/chaung_ta.jpg" class="stretch" />
+	  </section>
+
+	  <section>
+	    <img src="img/girls.jpg" class="stretch" />
+	  </section>
+
+	  <section>
+	    <img src="img/madagascar.jpg" class="stretch" />
+	  </section>
+
+	  <section>
+	    <img src="img/motorbike.jpg" class="stretch" />
+    </section>
+
+	  <section>
+	    <img src="img/animal_farm.jpg" class="stretch" />
+	  </section>
+
+	  <section>
+	    <h2>I am always happy to help!</h2>
+	  </section>
+	</section>
+
+	<section id="contents">
+	  <h2>Contents of the session</h2>
+	  <ul>
+	    <li>What is entity browser?</li>
+	    <li>Architecture</li>
+      <li>Where can I use it?</li>
+	    <li>Examples/Covered use cases</li>
+	    <li>Inline entity form integration</li>
+	    <li>Roadmap</li>
+	  </ul>
+	</section>
+
+  <section>
+	  <section id="have-you-ever">
+	    <h2>Have you ever...</h2>
+	  </section>
+	  <section>
+	    <h2>...wanted to upload multiple images at once?</h2>
+	  </section>
+	  <section>
+      <img src="screencasts/multi_image_upload.gif" class="stretch" />
+	  </section>
+	  <section>
+	    <h2>...wanted to select images from a media library?</h2>
+	  </section>
+	  <section>
+      <img src="screencasts/image_from_library.gif" class="stretch" />
+	  </section>
+	  <section>
+	    <h2>...thought about combining both?</h2>
+	  </section>
+	  <section>
+      <img src="screencasts/mixed.gif" class="stretch" />
+	  </section>
+	  <section>
+	    <h2>...tried to search for related content?</h2>
+	  </section>
+	  <section>
+      <img src="screencasts/related_content.gif" class="stretch" />
+	  </section>
+	  <section>
+	    <h2>...needed to create a related entity without leaving the context?</h2>
+	  </section>
+	  <section>
+      <img src="screencasts/create_inline.gif" class="stretch" />
+	  </section>
+	  <section>
+	    <h2>We've got you covered!</h2>
+      <small>* no BS attached</small>
+	  </section>
+	  <section>
+	    <h2>What is entity browser?</h2>
+      <p>General entity browsing, selecting and creating tool. Works with any entity type. Can work with fields, WYSIWYG, custom forms, ...</p>
+	  </section>
+	</section>
+
+  <section>
+	  <section id="architecture">
+	    <h2>Architecture</h2>
+      <p>Powerful, flexible, pluggable* and extensible.</p>
+      <small>*yes, it heavily relies on core plugin system</small>
+	  </section>
+
+	  <section id="architecture-wireframe">
+	    <img src="img/architecture.png" />
+      <aside class="notes">
+        <ul>
+          <li>the idea is to have something like this</li>
+          <li>most important "components are visible"</li>
+        </ul>
+      </aside>
+	  </section>
+
+	  <section id="architecture-widget-1">
+      <h2>Widget</h2>
+	    <img src="img/architecture-widget.png" style="max-height: 550px;" />
+      <aside class="notes">
+        <ul>
+          <li></li>
+          <li></li>
+        </ul>
+      </aside>
+	  </section>
+
+	  <section id="architecture-widget-2">
+      <h2>Widget (cont'd)</h2>
+      <p>Part that decides which entities are "selected" on a given step. Can be:</p>
+      <ul>
+        <li>a view - listing of entities*</li>
+        <li class="fragment">file uploader (HTML5*, DropzoneJS*, ...)</li>
+        <li class="fragment">remote resource browser (YouTube, Flickr, Getty images, ...)</li>
+        <li class="fragment">entity form*</li>
+        <li class="fragment">...</li>
+      </ul>
+      <aside class="notes">
+        <ul>
+          <li></li>
+          <li></li>
+        </ul>
+      </aside>
+	  </section>
+
+    <section id="architecture-widget-3">
+      <h2>Widget (cont'd)</h2>
+      <pre><code class="php">
+interface WidgetInterface {
+
+  public function getForm(array &$original_form, FormStateInterface $form_state, array $aditional_widget_parameters);
+
+  public function validate(array &$form, FormStateInterface $form_state);
+
+  // Call WidgetBase::selectEntities() to propagate selection to the other parts
+  // of the entity browser (event).
+  public function submit(array &$element, array &$form, FormStateInterface $form_state);
+
+}
+      </code></pre>
+      <aside class="notes">
+        <ul>
+          <li></li>
+          <li></li>
+        </ul>
+      </aside>
+	  </section>
+
+	  <section id="architecture-selector-1">
+      <h2>Widget selector</h2>
+	    <img src="img/architecture-selector.png" style="max-height: 550px;" />
+      <aside class="notes">
+        <ul>
+          <li></li>
+          <li></li>
+        </ul>
+	  </section>
+
+    <section id="architecture-selector-2">
+      <h2>Widget selector (cont'd)</h2>
+      <p>Part that defines how switching between widgets work. Can be:</p>
+      <ul>
+        <li>single widget - only one widget is used, no need to allow selection*</li>
+        <li class="fragment">dropdown*</li>
+        <li class="fragment">buttons*</li>
+        <li class="fragment">tabs*</li>
+        <li class="fragment">...</li>
+      </ul>
+      <aside class="notes">
+        <ul>
+          <li></li>
+          <li></li>
+        </ul>
+      </aside>
+	  </section>
+
+    <section id="architecture-selector-3">
+      <h2>Widget selector (cont'd)</h2>
+      <pre><code class="php">
+interface WidgetSelectorInterface {
+
+  public function getForm(array &$form, FormStateInterface &$form_state);
+
+  public function setDefaultWidget($widget);
+
+  public function validate(array &$form, FormStateInterface $form_state);
+
+  // Return UUID of the selected widget.
+  public function submit(array &$form, FormStateInterface $form_state);
+
+}
+      </code></pre>
+      <aside class="notes">
+        <ul>
+          <li></li>
+          <li></li>
+        </ul>
+      </aside>
+	  </section>
+
+	  <section id="architecture-selectiondisplay-1">
+      <h2>Selection display</h2>
+	    <img src="img/architecture-selectiondisplay.png" style="max-height: 550px;" />
+      <aside class="notes">
+        <ul>
+          <li></li>
+          <li></li>
+        </ul>
+	  </section>
+
+    <section id="architecture-selectiondisplay-2">
+      <h2>Selection display (cont'd)</h2>
+      <p>Part that displays entities that are currently selected. Can be:</p>
+      <ul>
+        <li>no display - only one step of selection is possible, entities are propagated immediately*</li>
+        <li class="fragment">view display*</li>
+        <li class="fragment">rendered entity display*</li>
+        <li class="fragment">entity label*</li>
+        <li class="fragment">...</li>
+      </ul>
+      <aside class="notes">
+        <ul>
+          <li>view won't display duplicated entities</li>
+          <li>no reordering in view for now</li>
+        </ul>
+      </aside>
+	  </section>
+
+    <section id="architecture-selectiondisplay-3">
+      <h2>Selection display (cont'd)</h2>
+      <pre><code class="php">
+interface SelectionDisplayInterface {
+
+  public function getForm(array &$original_form, FormStateInterface $form_state);
+
+  public function validate(array &$form, FormStateInterface $form_state);
+
+  // Call SelectionDisplayBase::selectionDone() to finish "session" and return
+  // selected entities (event).
+  public function submit(array &$form, FormStateInterface $form_state);
+
+}
+      </code></pre>
+      <aside class="notes">
+        <ul>
+          <li></li>
+          <li></li>
+        </ul>
+      </aside>
+	  </section>
+
+    <section id="architecture-display-1">
+      <h2>Display</h2>
+      <p>Defines how entity browser appears in the broader context. Can be:</p>
+      <ul>
+        <li>iFrame*</li>
+        <li class="fragment">modal*</li>
+        <li class="fragment">standalone*</li>
+        <li class="fragment">...</li>
+      </ul>
+      <aside class="notes">
+        <ul>
+          <li>view won't display duplicated entities</li>
+          <li>no reordering in view for now</li>
+        </ul>
+      </aside>
+	  </section>
+
+    <section id="architecture-display-2">
+      <h2>Display (cont'd)</h2>
+      <pre><code class="php">
+interface DisplayInterface {
+
+  // Some members ommitted for simplification ...
+  public function displayEntityBrowser(FormStateInterface $form_state);
+
+  public function selectionCompleted(array $entities);
+  // ...
+
+}
+      </code></pre>
+      <aside class="notes">
+        <ul>
+          <li></li>
+          <li></li>
+        </ul>
+      </aside>
+	  </section>
+
+	</section>
+
+  <section>
+	  <section id="where">
+      <h2>Where can I use Entity browser today?</h2>
+	  </section>
+
+	  <section id="where-entityreference">
+      <h3>As an entity reference field widget</h3>
+      <img src="img/er_widget.png" class="stretch" />
+      <aside class="notes">
+        <ul>
+          <li>Comes with EB</li>
+          <li>Display configurable</li>
+          <li>edit</li>
+          <li>reorder</li>
+          <li>Remove</li>
+        </ul>
+      </aside>
+	  </section>
+
+	  <section id="where-file-entity">
+      <h3>As a file/image field widget</h3>
+      <img src="img/file_widget.png" class="stretch" />
+      <aside class="notes">
+        <ul>
+          <li>Comes with File entity</li>
+          <li>Mimics core widget</li>
+        </ul>
+      </aside>
+	  </section>
+
+	  <section id="where-entity-embed">
+      <h3>In Entity embed</h3>
+      <img src="screencasts/entity_embed.gif" class="stretch" />
+      <aside class="notes">
+        <ul>
+          <li>Session tomorrow!</li>
+        </ul>
+      </aside>
+	  </section>
+
+	  <section id="where-custom">
+      <h3>In a custom form</h3>
+      <pre><code class="php">
+$form['entity_ids'] = [
+  '#type' => 'hidden',
+  '#attributes' => ['id' => 'some-id'],
+];
+
+$entity_browser = EntityBrowser::load($eb_id);
+$display = $entity_browser->getDisplay();
+$display->setUuid($some_uuid);
+$form['entity_browser'] = $display->displayEntityBrowser($form_state);
+
+$form['#attached']['library'][] = 'entity_browser/common';
+$form['#attached']['drupalSettings']['entity_browser'][$some_uuid] = [
+  // Default: unlimited
+  'cardinality' => 5,
+  // Default: $(this).parent().parent().find('input[type*=hidden]')
+  // "this" is trigger element (usually link)
+  'selector' => '#some-id',
+];
+      </code></pre>
+      <aside class="notes">
+        <ul>
+          <li>would like to create form element</li>
+        </ul>
+      </aside>
+	  </section>
+	</section>
+
+  <section>
+	  <section id="examples-related-content">
+      <h2>Example: referencing related content</h2>
+      <aside class="notes">
+        <ul>
+          <li>Entity reference field</li>
+          <li>EB one view widget</li>
+          <li>search for a node</li>
+          <li>select</li>
+          <li>appears in field</li>
+        </ul>
+      </aside>
+	  </section>
+
+	  <section id="examples-image">
+      <h2>Example: upload images and select from library</h2>
+      <aside class="notes">
+        <ul>
+          <li>Image field</li>
+          <li>File browser eb</li>
+          <li>Multi-step selection display</li>
+          <li>Select</li>
+          <li>Upload</li>
+          <li>Reorder</li>
+          <li>Remove</li>
+          <li>Finish selection</li>
+          <li>Alt title on field</li>
+        </ul>
+      </aside>
+	</section>
+
+  <section id="inline-entity-form">
+	  <h2>Inline entity form integration</h2>
+	  <p>Powerful entity reference widget, that allows creation/edit of referenced entities inline.</p>
+	  <p>You can use Entity browser with its "Use existing" feature.</p>
+      <aside class="notes">
+        <ul>
+          <li>show without</li>
+          <li>show with</li>
+        </ul>
+      </aside>
+	</section>
+
+  <section id="roadmap">
+	  <h2>Roadmap</h2>
+	  <p>Some more work until beta: better cardinality handling, constraints, editing existing selection</p>
+	  <p>You can already use it!</p>
+	</section>
+
+	<section id="last">
+	  <h2>Thank you! Questions?</h2>
+	  <p>
+	    <a href="https://www.drupal.org/u/slashrsm">Janez Urevc</a> / <a href="http://twitter.com/slashrsm">@slashrsm</a> / <a href="http://janezurevc.name">http://janezurevc.name</a>
+	  </p>
+	  <p>
+	    <a href="http://slashrsm.github.io/entity-browser-session">slashrsm.github.io/entity-browser-session</a>
+	  </p>
+	</section>
+
+      </div>
+    </div>
+    <div class="footer" style="position:relative; bottom: 50px;">
+      <a href="http://md-systems.ch"><div class="logo" style="width: 100px; float: left; margin-left: 20px;"><img src="img/md.png" style="width: 100%;" /></div></a>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
