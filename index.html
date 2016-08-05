@@ -31,7 +31,7 @@
       <div class="slides">
 
 	<section id="front">
-	  <img src="img/drupalddmilan.png" style="border: none; max-height: 300px; background: none;" />
+	  <img src="img/corncamp.png" style="border: none; max-height: 300px; background: none;" />
 	  <h2>Content creation UX wonderland with Entity browser</h2>
 	  <p>
 	    <a href="https://www.drupal.org/u/slashrsm">Janez Urevc</a> / <a href="http://twitter.com/slashrsm">@slashrsm</a> / <a href="http://janezurevc.name">http://janezurevc.name</a>
@@ -41,8 +41,8 @@
 	  </p>
 	</section>
 
-	<section>
-	  <section id="about">
+  <section>
+	  <section id="about-janez">
 	    <h2>Janez Urevc (<a href="https://drupal.org/u/slashrsm">@slashrsm</a>)</h2>
 	    <ul>
 	      <li>senior engineer and team lead at MD Systems</li>
@@ -54,9 +54,19 @@
 
 	  <section>
 	    <h2>Biggest company contributor</h2>
-	    <img src="img/credits.png" class="stretch" />
-	    <p>Source: <a href="https://drupal.org/drupal-services">drupal.org/drupal-services</a></p>
-      <p><a href="http://www.md-systems.ch">http://www.md-systems.ch/en</a></p>
+	    <div style="float: left; width: 40%;">
+        <img src="img/credits.png" class="stretch" style="max-width: 100%" />
+      </div>
+      <div style="float: right; width: 55%; padding-top: 1em; padding-left: 1em;">
+        <ul>
+          <li>our CTO (<a href="https://drupal.org/u/berdir">@berdir</a>) is nr. D8 contributor</li>
+          <li>D8 expert</li>
+          <li>D8 media expert - lots of media clients</li>
+          <li><a href="http://www.md-systems.ch">http://www.md-systems.ch/en</a></li>
+          <li>Services include: Full projects, site audits, bootstrap weeks, support/consulting, architecture planning, ...</li>
+        </ul>
+	      <p style="margin-top: 2.5em;">Source: <a href="https://drupal.org/drupal-services">drupal.org/drupal-services</a></p>
+      </div>
 	    <aside class="notes">
         <ul>
           <li>top 5 D8 ind. contrib.</li>
@@ -72,6 +82,10 @@
 	  </section>
 
 	  <section>
+	    <img src="img/girls.jpg" class="stretch" />
+	  </section>
+
+	  <section>
 	    <img src="img/sunset.jpg" class="stretch" />
 	  </section>
 
@@ -80,16 +94,8 @@
 	  </section>
 
 	  <section>
-	    <img src="img/girls.jpg" class="stretch" />
-	  </section>
-
-	  <section>
 	    <img src="img/madagascar.jpg" class="stretch" />
 	  </section>
-
-	  <section>
-	    <img src="img/motorbike.jpg" class="stretch" />
-    </section>
 
 	  <section>
 	    <img src="img/animal_farm.jpg" class="stretch" />
@@ -411,23 +417,12 @@ interface DisplayInterface {
 	  <section id="where-custom">
       <h3>In a custom form</h3>
       <pre><code class="php">
+// There is a form element. See \Drupal\entity_browser\Element\EntityBrowserElement
+// for more info.
 $form['entity_ids'] = [
-  '#type' => 'hidden',
-  '#attributes' => ['id' => 'some-id'],
-];
-
-$entity_browser = EntityBrowser::load($eb_id);
-$display = $entity_browser->getDisplay();
-$display->setUuid($some_uuid);
-$form['entity_browser'] = $display->displayEntityBrowser($form_state);
-
-$form['#attached']['library'][] = 'entity_browser/common';
-$form['#attached']['drupalSettings']['entity_browser'][$some_uuid] = [
-  // Default: unlimited
-  'cardinality' => 5,
-  // Default: $(this).parent().parent().find('input[type*=hidden]')
-  // "this" is trigger element (usually link)
-  'selector' => '#some-id',
+  '#type' => 'entity_browser',
+  '#entity_browser' => 'my_test_entity_browser',
+  '#cardinality' => 5,
 ];
       </code></pre>
       <aside class="notes">
@@ -484,9 +479,12 @@ $form['#attached']['drupalSettings']['entity_browser'][$some_uuid] = [
 
   <section id="roadmap">
 	  <h2>Roadmap</h2>
-	  <p><strong>Some more work until beta:</strong> better cardinality handling, constraints, editing existing selection</p>
-    <p><strong>Other things:</strong> UX, being "smart" for you</p>
-	  <p>You can already use it!</p>
+	  <p><strong>Very close to beta:</strong> fix critical bugs</p>
+    <p><strong>Other things:</strong> UX, tests</p>
+	  <p>You can use it!</p>
+	  <aside class="notes">
+	    We are not planning any BC breaking changes any more.
+	  </aside>
 	</section>
 
 	<section id="last">
@@ -497,11 +495,6 @@ $form['#attached']['drupalSettings']['entity_browser'][$some_uuid] = [
 	  <p>
 	    <a href="https://slashrsm.github.io/entity-browser-session/">slashrsm.github.io/entity-browser-session/</a>
 	  </p>
-	</section>
-
-
-	<section id="back-pre">
-	  <img src="img/back.jpg" class="stretch" />
 	</section>
 
       </div>
